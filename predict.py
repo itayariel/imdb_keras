@@ -1,4 +1,5 @@
 from keras.datasets import imdb
+from random import randint
 import numpy as np
 import keras
 from nltk import word_tokenize
@@ -52,3 +53,8 @@ def encode_sentence(sentence):
             word_id = word_to_id["<UNK>"]
         test.append(word_id)
     return test
+
+
+def predict2(*args):
+    a = str(randint(100, 1000))
+    return a
