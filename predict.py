@@ -3,8 +3,8 @@ import numpy as np
 import keras
 from nltk import word_tokenize
 
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+import tensorflow as tf
+
 
 from keras.backend.tensorflow_backend import set_session
 from keras.preprocessing import sequence
