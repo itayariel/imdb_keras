@@ -7,12 +7,10 @@ app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
 def run():
     try:
-        with session.as_default():
-            with session.graph.as_default():
-                data = request.get_json(force=True)
-                input_params = data['input']
-                result =  predict.predict(input_params)
-                return jsonify({'prediction': result})
+        data = request.get_json(force=True)
+        input_params = data['input']
+        result =  predict.predict(input_params)
+        return jsonify({'prediction': result})
     except Exception as e:
         print(traceback.format_exc())
         return jsonify({'error': str(e)})
