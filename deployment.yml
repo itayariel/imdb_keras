@@ -23,7 +23,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
          - echo "start";
-           git clone https://github.com/visenger/imdb_keras;
+           git clone https://github.com/itayariel/imdb_keras;
            cd imdb_keras;
            pip install -r requirements.txt;
            python server.py;
