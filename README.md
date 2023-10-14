@@ -17,6 +17,10 @@ Deploy model using kubectl
 ```sh
 kubectl apply -f deployment.yml
 ```
+Test prediction by using REST API
+```sh
+curl -X POST http://172.17.0.35:31217/predict -H 'Content-Type: application/json' -d '{"input": "I loved this video Like, love, amazing!!"}'
+```
 
 License
 ----
