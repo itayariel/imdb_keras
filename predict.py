@@ -2,7 +2,9 @@ from keras.datasets import imdb
 import numpy as np
 import keras
 from nltk import word_tokenize
+
 import tensorflow as tf
+
 from keras.backend.tensorflow_backend import set_session
 from keras.preprocessing import sequence
 import nltk
@@ -11,7 +13,8 @@ nltk.download('punkt')
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
-set_session(tf.Session(config=config))
+session=tf.Session(config=config)
+set_session(session)
 
 INDEX_FROM=3
 word_to_id = imdb.get_word_index()
@@ -30,13 +33,14 @@ def decode_back_sentence(decoded):
     return decoded_review
 
 def predict(sentence):
+     with session.as_default():
+            with session.graph.as_default():
+                encoded = encode_sentence(sentence)
 
-    encoded = encode_sentence(sentence)
-
-    pred = np.array([encoded])
-    pred = vectorize_sequences(pred)
-    a = model.predict(pred)
-    return str(a[0][0])
+                pred = np.array([encoded])
+                pred = vectorize_sequences(pred)
+                a = model.predict(pred)
+                return str(a[0][0])
 
 def vectorize_sequences(sequences, dimension=10000):
     results = np.zeros((len(sequences), dimension))
